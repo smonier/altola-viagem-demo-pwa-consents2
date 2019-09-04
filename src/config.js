@@ -1,7 +1,7 @@
 export const config = {
   dxHost: process.env.REACT_APP_DX_HOST,
   unomiHost: process.env.REACT_APP_UNOMI_HOST,
-  dxSiteKey: "viagempwa",
+  dxSiteKey: process.env.REACT_APP_SITE_KEY,
   fullPageLicense: "4F4DA9EF-5A634194-8AB79E5B-A0F3B7FB"
 };
 
