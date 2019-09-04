@@ -23,7 +23,7 @@ const profiles = [
   },
   {
     name: "FSI-Bank",
-    displayName: "Bank"
+    displayName: "Banking"
   },
   {
     name: "FSI-Insurance",
