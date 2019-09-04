@@ -1,0 +1,80 @@
+fragment section on JCRNode {
+  name: property(language: "en", name: "sectionName") {
+    value
+  }
+  title: property(language: "en", name: "sectionTitle") {
+    value
+  }
+  text: property(language: "en", name: "sectionText") {
+    value
+  }
+  ctaText: property(language: "en", name: "ctaText") {
+    value
+  }
+  ctaLink: property(language: "en", name: "ctaLink") {
+    value
+  }
+  sectionImage: property(language: "en", name: "sectionImage") {
+    image: refNode {
+      path
+    }
+  }
+  backgroundImage: property(language: "en", name: "backgroundImage") {
+    image: refNode {
+      path
+    }
+  }
+  sortOrder: property(name: "sortOrder") {
+    floatValue
+  }
+  type: primaryNodeType{
+    name
+  }
+  path
+  teasers: property(name: "teasers") {
+    items: refNodes {
+      name
+      title: property(language: "en", name: "teaserTitle") {
+        value
+      }
+      text: property(language: "en", name: "teaserText") {
+        value
+      }
+      image: property(name: "teaserImage") {
+        path: refNode {
+          path
+        }
+      }
+      type: primaryNodeType{
+        name
+      }   
+      path
+    }
+  }
+}
+
+query($profileId: String!, $sessionId: String!, $path: String!, $workspace: Workspace!) {
+  content: jcr(workspace: $workspace) {
+    screen: nodeByPath(path: $path) {
+      name
+      sections: property(name: "sections") {
+        items: refNodes {
+          ...section
+        }
+      }
+      personalizedSections: property(name: "personalizedSections") {
+        items: refNodes {
+          factory: marketingFactory(profileId: $profileId, sessionId: $sessionId) {
+            variant: personalizedVariant {
+              node: property(name: "j:node") {
+                section: refNode {
+                  ...section
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

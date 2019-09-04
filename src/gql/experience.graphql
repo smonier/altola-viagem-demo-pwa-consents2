@@ -1,0 +1,45 @@
+query($path: String!, $workspace: Workspace!) {
+  content: jcr(workspace: $workspace) {
+    experience: nodeByPath(path: $path) {
+      name
+      title: property(language: "en", name: "name") {
+        value
+      }
+      vendorName: property(language: "en", name: "vendorName") {
+        value
+      }
+      description: property(language: "en", name: "description") {
+        value
+      }
+      backgroundImage: property(name: "backgroundImage") {
+        path: refNode {
+          path
+        }
+      }
+      images: property(name: "images") {
+        images: refNodes {
+        	path
+        }
+      }
+      type: primaryNodeType {
+        name
+      }
+      businessName: property(language: "en", name: "yelpName") {
+        value
+      }
+      path
+      image: property(name: "teaserImage") {
+        path: refNode {
+          path
+        }
+      }
+      path
+      tags: property(name: "j:tagList") {
+        values
+      }
+      interests: property(name: "wem:interests") {
+        values
+      }
+    }
+  }
+}

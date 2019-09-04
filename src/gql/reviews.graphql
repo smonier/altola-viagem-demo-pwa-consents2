@@ -1,0 +1,14 @@
+query($businessName: String!) {
+  reviews(business: $businessName, limit: 10) {
+    review {
+      text
+      time_create
+      url
+      rating
+      user {
+        name
+        profile_url
+      }
+    }
+  }
+}

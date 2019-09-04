@@ -1,0 +1,13 @@
+input.error {
+  border-color: red !important;
+}
+
+.input-feedback {
+  color: red;
+  margin-top: 0.25rem;
+}
+
+form button[type="submit"].button:disabled {
+  background: #666666 !important;
+  cursor: not-allowed;
+}
